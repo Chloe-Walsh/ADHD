@@ -50,8 +50,8 @@ export function IntuitiveButton(props: {
               "&:hover": {
                 backgroundColor: props.hoverBackgroundColor,
                 color: props.hoverTextColor,
-                border: `2px solid ${props.hoverTextColor}`,
-              },
+                border: `2px solid ${props.hoverTextColor}`
+              }
             }}
           >
             {props.children}
@@ -62,8 +62,12 @@ export function IntuitiveButton(props: {
             anchorEl={anchorEl}
             onClose={handleClose}
             anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
+              vertical: "center",
+              horizontal: "left"
+            }}
+            transformOrigin={{
+              vertical: "center",
+              horizontal: "right"
             }}
           >
             <Typography sx={{ p: 2 }}>{props.text}</Typography>
@@ -90,8 +94,8 @@ export function IntuitiveButton(props: {
               "&:hover": {
                 backgroundColor: props.hoverBackgroundColor,
                 color: props.hoverTextColor,
-                opacity: 0.8,
-              },
+                opacity: 0.8
+              }
             }}
           >
             {props.children}
@@ -102,9 +106,12 @@ export function IntuitiveButton(props: {
             anchorEl={anchorEl}
             onClose={handleClose}
             anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
+              vertical: "center",
+              horizontal: "left"
+            }} transformOrigin={{
+            vertical: "center",
+            horizontal: "right"
+          }}
           >
             <Typography sx={{ p: 2 }}>{props.text}</Typography>
           </Popover>
@@ -124,9 +131,9 @@ export function IntuitiveButtonsGroup() {
 
   return (
     <>
-      <Box sx={{ display: "grid", justifyContent: "left", marginTop: "50px" }}>
+      <Box sx={{ display: "grid", justifyContent: "right", marginTop: "50px" }}>
         <IntuitiveButton
-          text="This button is obviously not a good button for yes."
+          text="This is not a good colour for a positive action button. It looks like you shouldn't click on it. The font is somewhat hard to read."
           bgColor={midGrey}
           textColor="black"
           isContained
@@ -136,7 +143,7 @@ export function IntuitiveButtonsGroup() {
           Yes
         </IntuitiveButton>
         <IntuitiveButton
-          text="Probably not this one."
+          text="This looks non-clickable, so probably not best for a submit button. "
           bgColor={lightGrey}
           textColor={midGrey}
           isContained
@@ -146,7 +153,7 @@ export function IntuitiveButtonsGroup() {
           submit
         </IntuitiveButton>
         <IntuitiveButton
-          text="What are you? a clown?"
+          text="This could be used for a back button or neutral. Best not to use it for a positive button of continuing"
           bgColor="white"
           textColor={midGrey}
           isOutline
@@ -156,7 +163,7 @@ export function IntuitiveButtonsGroup() {
           Continue
         </IntuitiveButton>
         <IntuitiveButton
-          text="Sure, if you are a fool."
+          text="This button could work for a negative action, if there is also a positive action button then this should be outlined instead."
           bgColor={midOrange}
           textColor="white"
           isContained
@@ -166,7 +173,7 @@ export function IntuitiveButtonsGroup() {
           No
         </IntuitiveButton>
         <IntuitiveButton
-          text="Okay, go ahead."
+          text="This button could work, although if it is the primary button it would be better if it was filled and not just outlined."
           bgColor="white"
           textColor={midOrange}
           isOutline
@@ -183,37 +190,46 @@ export function IntuitiveButtonsGroup() {
 export function LinkTools() {
   return (
     <>
-      <Box
-        sx={{
-          maxWidth: "700px",
-          border: "4px solid #f66500",
-          paddingTop: "20px",
-          paddingBottom: "20px",
-          marginBottom: "20px",
-          paddingLeft: "10px",
-          paddingRight: "10px",
-        }}
-      >
-        <Typography component="span" sx={{ cursor: "auto", fontSize: "18px" }}>
-          Clear{" "}
-          <Typography sx={{ display: "inline", textDecoration: "underline", cursor: "pointer", fontSize: "18px" }}>
-            links
-          </Typography>{" "}
-          underlined words, and{" "}
-          <Tooltip title="This is not the helpful tooltip">
-            <Typography sx={{ display: "inline", cursor: "grab", fontSize: "18px" }}>helpful tooltips</Typography>
-          </Tooltip>{" "}
-          create a <Typography sx={{ display: "inline", cursor: "not-allowed", fontSize: "18px" }}>friendly</Typography>{" "}
-          website experience. They simplify the{" "}
-          <Link href="/#decisions" underline="none" color="black" sx={{ cursor: "none", fontSize: "18px" }}>
-            navigation
-          </Link>{" "}
-          and help with{" "}
-          <Tooltip title="The link is in the word navigation">
-            <Typography sx={{ display: "inline", cursor: "help", fontSize: "18px" }}>understanding</Typography>
-          </Tooltip>{" "}
-          the content.
-        </Typography>
+      <Box sx={{
+        display: "flex", justifyContent: "right"
+      }}>
+        <Box
+          sx={{
+            textAlign: "right",
+            maxWidth: "700px",
+            border: "4px solid #f66500",
+            paddingTop: "20px",
+            paddingBottom: "20px",
+            marginBottom: "20px",
+            paddingLeft: "10px",
+            paddingRight: "10px",
+            fontSize: "1.2rem",
+          }}
+        ><>
+          <Typography component="span">
+          <Typography   component="span" sx={{ cursor: "wait" }}>
+            Clear{" "}</Typography>
+            <Typography   sx={{ display: "inline", textDecoration: "underline", cursor: "pointer",  }}>
+              links
+            </Typography>{" "}
+            underlined words, and{" "}
+            <Tooltip title="This is not the helpful tooltip">
+              <Typography  sx={{ display: "inline", cursor: "help" }}>helpful tooltips</Typography>
+            </Tooltip>{" "}
+            create a <Typography
+            sx={{ display: "inline", cursor: "not-allowed"}}>friendly</Typography>{" "}
+            website experience. They simplify the{" "}
+            <Link  href="/#decisions" underline="none" color="black" sx={{ cursor: "none" }}>
+              navigation
+            </Link>{" "}
+            and help with{" "}
+            <Tooltip title="The link is in the word navigation">
+              <Typography   variant="body1" sx={{ display: "inline", cursor: "help"}}>understanding</Typography>
+            </Tooltip>{" "}
+            the content.
+          </Typography>
+          </>
+        </Box>
       </Box>
     </>
   );
@@ -225,11 +241,15 @@ export function IntuitivePage() {
 
   return (
     <Page id="intuitive" backgroundColor={backgroundColor}>
-      <PageTitle color={titleColor}>Intuitive</PageTitle>
-      <PageContent>
-        Designing websites with intuitive features, users can quickly find what they&apos;re looking for, complete tasks
-        efficiently, and engage with the content without the need for extensive guidance or instructions.
-      </PageContent>
+      <PageTitle isRight color={titleColor}>Intuitive</PageTitle>
+      <Box pb="40px" sx={{ textAlign: "right", display: "flex", alignContent: "right" }}>
+        <Typography variant="body1" sx={{  }}>
+          Intuitive web design is important as the focus is on experience of the people using it, making it easy to
+          understand, navigate and interact with.
+          Maintaining consistent layouts is one thing that can help users engage with the content without the need for
+          extensive guidance or instructions.
+        </Typography>
+      </Box>
       <LinkTools />
       <IntuitiveButtonsGroup />
     </Page>

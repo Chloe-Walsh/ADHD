@@ -6,8 +6,8 @@ export function Page(props: any) {
       <Container>
         <Box
           sx={{
-            paddingTop: "50px",
-            bgcolor: props.backgroundColor,
+            paddingTop: "90px",
+            backgroundColor: props.backgroundColor,
             minHeight: "100vh",
             maxWidth: "100vw",
             height: "100%",

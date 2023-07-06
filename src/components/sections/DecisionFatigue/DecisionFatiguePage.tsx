@@ -3,8 +3,9 @@ import { Typography, Box, Button, LinearProgress, ButtonGroup } from "@mui/mater
 import { Page } from "@/components/common/Page";
 import { PageTitle } from "@/components/common/PageTitle";
 import { PageContent } from "@/components/common/PageContent";
-import { CalculateLightness, GenerateHexCodes, HexToHsl } from "./ColourConversion";
+import { CalculateLightness, GenerateHexCodes } from "./ColourConversion";
 import { wrap } from "module";
+
 
 const stepNames = ["hue", "shade", "tint", "tone"];
 
@@ -16,7 +17,7 @@ function SelectionStep(props: { step: number; currentStepData: string; hexCodes:
         paddingBottom: "10px",
         minHeight: "250px",
         color: "#740b9c",
-        width: "100%",
+        width: "100%"
       }}
     >
       <Typography sx={{ textAlign: "center", fontSize: "20px", fontWeight: "600" }}>
@@ -29,7 +30,7 @@ function SelectionStep(props: { step: number; currentStepData: string; hexCodes:
           justifyContent: "center",
           paddingTop: "10px",
           paddingBottom: "10px",
-          width: "100%",
+          width: "100%"
         }}
       >
         <Box
@@ -41,7 +42,7 @@ function SelectionStep(props: { step: number; currentStepData: string; hexCodes:
             justifyContent: "center",
             flexDirection: "row",
             flexWrap: "wrap",
-            alignItems: "stretch",
+            alignItems: "stretch"
           }}
         >
           {props.hexCodes.map((hex) => {
@@ -54,7 +55,7 @@ function SelectionStep(props: { step: number; currentStepData: string; hexCodes:
                     alignItems: "stretch",
                     alignContent: "stretch",
                     position: "relative",
-                    justifyContent: "center",
+                    justifyContent: "center"
                   }}
                 >
                   <Box
@@ -68,11 +69,10 @@ function SelectionStep(props: { step: number; currentStepData: string; hexCodes:
                       alignItems: "center",
                       justifyContent: "center",
                       cursor: "pointer",
-                      // border: isSelected ? "4px solid green" : "0px solid white",
                       borderWidth: "4px",
                       borderStyle: "solid",
                       borderColor: hex,
-                      boxShadow: isSelected ? "inset 0 0 0 3px white" : "",
+                      boxShadow: isSelected ? "inset 0 0 0 3px white" : ""
                     }}
                   >
                     <Typography display="flex" fontSize="40px" color="white">
@@ -93,7 +93,6 @@ function SelectionStep(props: { step: number; currentStepData: string; hexCodes:
             );
           })}
         </Box>
-        {/* <Typography> {props.currentStepData ? props.currentStepData.toUpperCase() + " is selected" : null}</Typography> */}
       </Box>
     </Box>
   );
@@ -110,22 +109,22 @@ const buttonOptions = [
         backgroundColor: "#FFFFFF",
         "&:hover": {
           backgroundColor: "#FFFFFF",
-          opacity: 0.8,
-        },
+          opacity: 0.8
+        }
       },
-      props: { variant: "outlined" },
-    },
+      props: { variant: "outlined" }
+    }
   ],
   [
     { name: "Square", style: { borderRadius: "0px" }, props: {} },
     { name: "Curved", style: { borderRadius: "12px" }, props: {} },
-    { name: "Rounded", style: { borderRadius: "100px" }, props: {} },
+    { name: "Rounded", style: { borderRadius: "100px" }, props: {} }
   ],
   [
     { name: "Small", style: { width: "60px" }, props: { size: "small" } },
     { name: "Medium", style: { width: "100px" }, props: { size: "medium" } },
-    { name: "Large", style: { width: "150px" }, props: { size: "large" } },
-  ],
+    { name: "Large", style: { width: "150px" }, props: { size: "large" } }
+  ]
 ];
 
 function ButtonSelectionStep(props: {
@@ -139,11 +138,11 @@ function ButtonSelectionStep(props: {
   for (let i = 0; i < props.step; i++) {
     previousStepValues["style"] = {
       ...previousStepValues["style"],
-      ...props.stepData[i]["style"],
+      ...props.stepData[i]["style"]
     };
     previousStepValues["props"] = {
       ...previousStepValues["props"],
-      ...props.stepData[i]["props"],
+      ...props.stepData[i]["props"]
     };
   }
 
@@ -151,7 +150,7 @@ function ButtonSelectionStep(props: {
     return (
       <Box sx={{ paddingTop: "30px", paddingBottom: "10px", minHeight: "250px" }}>
         <Typography sx={{ textAlign: "center", fontSize: "20px", fontWeight: "600", color: "#740b9c" }}>
-          Congratulations clown *honk honk*, you have completed the design of the button.
+          Nice design! you have completed the complex design process.
         </Typography>
         <Box display="flex" alignItems="center" justifyContent="center" mb="30px" mt="20px" sx={{ padding: "20px" }}>
           <Button
@@ -168,11 +167,11 @@ function ButtonSelectionStep(props: {
                 backgroundColor: props.color,
                 border: `2px solid ${props.color}`,
                 opacity: 0.8,
-                ...previousStepValues.style["&:hover"],
-              },
+                ...previousStepValues.style["&:hover"]
+              }
             }}
           >
-            Button
+            Cool Button
           </Button>
         </Box>
       </Box>
@@ -188,7 +187,8 @@ function ButtonSelectionStep(props: {
         display="flex"
         alignItems="center"
         justifyContent="center"
-        mb="30px"
+        pb="20px"
+        mb="10px"
         mt="20px"
         alignContent="stretch"
         flexWrap="wrap"
@@ -213,7 +213,7 @@ function ButtonSelectionStep(props: {
                 paddingBottom: "10px",
                 marginLeft: "20px",
                 marginRight: "20px",
-                marginBottom: "1px",
+                marginBottom: "10px",
                 backgroundColor: props.color,
                 borderColor: props.color,
                 border: `2px solid ${props.color}`,
@@ -225,8 +225,8 @@ function ButtonSelectionStep(props: {
                   border: `2px solid ${props.color}`,
                   opacity: 0.8,
                   ...previousStepValues.style["&:hover"],
-                  ...buttonOption.style["&:hover"],
-                },
+                  ...buttonOption.style["&:hover"]
+                }
               }}
             >
               {buttonOption.name}
@@ -234,10 +234,9 @@ function ButtonSelectionStep(props: {
           );
         })}
       </Box>
-      <Typography textAlign="center" display="block" color="#9E17CF">
+      <Typography textAlign="center" display="block" color="#9E17CF" pb="20px">
         {props.stepData[props.step].name && "You have selected " + props.stepData[props.step].name}
       </Typography>
-      <Typography>{HexToHsl}</Typography>
     </Box>
   );
 }
@@ -248,7 +247,7 @@ function ColourStepper() {
   const [buttonData, setButtonData] = useState([
     { name: "", style: {}, props: {} },
     { name: "", style: {}, props: {} },
-    { name: "", style: {}, props: {} },
+    { name: "", style: {}, props: {} }
   ]);
   const stepHexCodes = GenerateHexCodes(stepData);
 
@@ -272,7 +271,7 @@ function ColourStepper() {
     setButtonData([
       { name: "", style: {}, props: {} },
       { name: "", style: {}, props: {} },
-      { name: "", style: {}, props: {} },
+      { name: "", style: {}, props: {} }
     ]);
   };
 
@@ -287,7 +286,7 @@ function ColourStepper() {
     newButtonData[currentStep - 4] = {
       name: newButton.name,
       style: { ...newButton.style },
-      props: { ...newButton.props },
+      props: { ...newButton.props }
     };
     setButtonData(newButtonData);
   };
@@ -302,7 +301,7 @@ function ColourStepper() {
         backgroundColor: "#740b9c09",
         paddingTop: "20px",
         paddingBottom: "20px",
-        marginBottom: "40px",
+        marginBottom: "40px"
       }}
     >
       <Box sx={{ width: "70%", maxWidth: "770px" }}>
@@ -314,11 +313,10 @@ function ColourStepper() {
             borderRadius: 2,
             backgroundColor: "#edbdff",
             "& .MuiLinearProgress-bar": {
-              backgroundColor: "#740b9c",
-            },
+              backgroundColor: "#740b9c"
+            }
           }}
         />
-        {/* TODO: Have this be a non arbiturary value */}
         <Box sx={{ maxWidth: "100%" }}>
           {currentStep < 4 ? (
             <SelectionStep
@@ -346,8 +344,8 @@ function ColourStepper() {
                   borderColor: "#9E17CF",
                   "&:hover": {
                     backgroundColor: "#8710b310",
-                    borderColor: "#740b9c",
-                  },
+                    borderColor: "#740b9c"
+                  }
                 }}
                 size="large"
                 variant="outlined"
@@ -364,8 +362,8 @@ function ColourStepper() {
                   borderColor: "#9E17CF",
                   "&:hover": {
                     backgroundColor: "#8710b310",
-                    borderColor: "#740b9c",
-                  },
+                    borderColor: "#740b9c"
+                  }
                 }}
                 disabled
                 size="large"
@@ -382,8 +380,8 @@ function ColourStepper() {
                   ml: "10px",
                   backgroundColor: "#9E17CF",
                   "&:hover": {
-                    backgroundColor: "#740b9c",
-                  },
+                    backgroundColor: "#740b9c"
+                  }
                 }}
                 disableElevation
                 variant="contained"
@@ -401,16 +399,16 @@ function ColourStepper() {
                 sx={{
                   width: "150px",
                   ml: "10px",
-                  color: "#9E17CF",
+                  color: "white",
                   borderColor: "#9E17CF",
+                  backgroundColor: "#740b9c",
                   "&:hover": {
-                    backgroundColor: "#8710b310",
-                    borderColor: "#740b9c",
-                    opacity: 0.8,
-                  },
+                    backgroundColor: "#740b9cEE",
+                    opacity: 0.8
+                  }
                 }}
                 disableElevation
-                variant="outlined"
+                variant="contained"
                 size="large"
                 onClick={handleRestart}
               >
@@ -431,23 +429,28 @@ const colorOptions = [
   { label: "Green", value: "#00CC14" },
   { label: "Blue", value: "#0149FF" },
   { label: "Purple", value: "#A800E6" },
-  { label: "Pink", value: "#E600DE" },
+  { label: "Pink", value: "#E600DE" }
 ];
 
 const buttonTypes = [
   { name: "Square", props: { isOutline: false, variant: "contained", corner: "square", borderRadius: "0px" } },
-  { name: "Curved", props: { isOutline: false, variant: "contained", corner: "curve", borderRadius: "10px" } },
+  { name: "Curved", props: { isOutline: false, variant: "contained", corner: "curve", borderRadius: "5px" } },
   { name: "Rounded", props: { isOutline: false, variant: "contained", corner: "round", borderRadius: "40px" } },
   { name: "Outlined Square", props: { isOutline: true, variant: "outlined", corner: "square", borderRadius: "0px" } },
-  { name: "Outlined Curved", props: { isOutline: true, variant: "outlined", corner: "curve", borderRadius: "10px" } },
-  { name: "Outlined Rounded", props: { isOutline: true, variant: "outlined", corner: "round", borderRadius: "40px" } },
+  { name: "Outlined Curved", props: { isOutline: true, variant: "outlined", corner: "curve", borderRadius: "5px" } },
+  { name: "Outlined Rounded", props: { isOutline: true, variant: "outlined", corner: "round", borderRadius: "40px" } }
 ];
 
-export default function CustomButtonDesigner() {
+export function CustomButtonDesigner() {
+  const [startDesign, setStartDesign] = useState(false);
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedButtonType, setSelectedButtonType] = useState("");
   const [selectedButtonVariant, setSelectedButtonVariant] = useState("");
   const [selectedButtonCorner, setSelectedButtonCorner] = useState("");
+
+  const beginButtonDesign = (start: boolean) => {
+    setStartDesign(start);
+  };
 
   const handleColorChange = (color: string) => {
     setSelectedColor(color);
@@ -460,16 +463,16 @@ export default function CustomButtonDesigner() {
     setSelectedButtonCorner(buttonCorner);
   };
 
-  const handleFinish = () => {
-    if (selectedColor && selectedButtonType) {
-      console.log("Selected color:", selectedColor);
-      console.log("Selected button type:", selectedButtonType);
-      // Perform further actions or submit the selection
-    } else {
-      // Display an error or prompt to select color and button type
-      console.log("Please select a color and button type");
-    }
-  };
+  // const handleFinish = () => {
+  //   if (selectedColor && selectedButtonType) {
+  //     console.log("Selected color:", selectedColor);
+  //     console.log("Selected button type:", selectedButtonType);
+  //
+  //   } else {
+  //
+  //     console.log("Please select a color and button type");
+  //   }
+  // };
 
   return (
     <Box
@@ -480,28 +483,48 @@ export default function CustomButtonDesigner() {
         paddingBottom: "30px",
         paddingTop: "30px",
         backgroundColor: "#740b9c09",
-        textAlign: "center",
+        textAlign: "center"
       }}
     >
+
       <Box
         sx={{
-          width: "700px",
-          padding: "20px",
+          maxWidth: "700px",
+          padding: "20px"
         }}
-      >
-        <Typography sx={{ fontSize: "20px", fontWeight: "600" }} variant="h3" color="#740b9c" pb={2} pt={2}>
+      ><Typography sx={{ fontSize: "1.4rem", fontWeight: "500", color: "#740b9c", paddingTop: "40px" }}>Welcome to the
+              simple button design process.
+            </Typography>
+            <Typography sx={{ fontSize: "1rem", fontWeight: "400", color: "#740b9c", paddingTop: "10px" }}>You can choose the colour and style for your button.
+            </Typography>
+        <Button disableElevation variant="contained" onClick={beginButtonDesign} sx={{
+          fontWeight: "600",
+          marginTop: "50px",
+          marginBottom: "60px",
+          width: "160px",
+          height: "45px",
+          backgroundColor: "#740b9c",
+          borderRadius: "3px",
+          color: "white",
+          "&:hover": {
+            backgroundColor: "#740b9cCC"
+          }
+        }}>Lets design</Button>
+        <Typography sx={{ fontSize: "20px", fontWeight: "600", color: !startDesign ? "lightGrey" : "#740b9c" }}
+                    variant="h3" pb={2} pt={2}>
           Choose a colour
         </Typography>
         <Box
           sx={{
-            display: "flex",
+            // display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "100px",
+            minHeight: "100px"
           }}
         >
           {colorOptions.map((colorOption, index) => (
             <Button
+              disabled={!startDesign}
               disableElevation
               key={index}
               sx={{
@@ -510,15 +533,16 @@ export default function CustomButtonDesigner() {
                 height: "70px",
                 color: "#FFFFFF00",
                 backgroundColor: colorOption.value,
+                filter: !startDesign ? "grayscale(90%) opacity(30%)" : "none",
                 opacity: selectedColor === colorOption.value ? "1" : "1",
                 "&:hover": {
                   backgroundColor: colorOption.value,
-                  borderColor: "#740b9c",
-                },
+                  borderColor: "#740b9c"
+                }
               }}
               onClick={() => handleColorChange(colorOption.value)}
             >
-              {colorOption.label}
+
             </Button>
           ))}
         </Box>
@@ -526,7 +550,7 @@ export default function CustomButtonDesigner() {
           sx={{ fontSize: "20px", fontWeight: "600", color: !selectedColor ? "lightgrey" : "#740b9c" }}
           variant="h3"
           pb={2}
-          pt={2}
+          pt="50px"
         >
           Pick a style
         </Typography>
@@ -540,7 +564,7 @@ export default function CustomButtonDesigner() {
             justifyContent: "center",
             paddingTop: "20px",
             paddingBottom: "30px",
-            margin: "0px",
+            margin: "0px"
           }}
         >
           {buttonTypes.map((buttonType, index) => (
@@ -560,8 +584,8 @@ export default function CustomButtonDesigner() {
                 border: buttonType.props.isOutline ? `2px solid ${selectedColor}` : "#FFFFFF00",
                 "&:hover": {
                   backgroundColor: buttonType.props.isOutline ? `${selectedColor}30` : `${selectedColor}CC`,
-                  border: buttonType.props.isOutline ? `2px solid ${selectedColor}CC` : `0px`,
-                },
+                  border: buttonType.props.isOutline ? `2px solid ${selectedColor}CC` : `0px`
+                }
               }}
               onClick={() => handleButtonTypeChange(buttonType.name, buttonType.props.variant, buttonType.props.corner)}
               disabled={!selectedColor}
@@ -573,9 +597,14 @@ export default function CustomButtonDesigner() {
 
         <>
           {selectedButtonType && (
-            <Box>
-              <Typography variant="body1" mb={3}>
-                Congratulations, you just picked a button in 1/10th of the time nice one.
+            <Box paddingTop="30px">
+              <Typography sx={{ fontSize: "20px", fontWeight: "600", color: "#740b9c" }}
+                          variant="h3" pt={2}>
+                Nice button design!
+              </Typography>
+              <Typography color="#740b9c" mb="40px" sx={{}}
+                          variant="body1">
+                That was a much simpler and fast process.
               </Typography>
               <Button
                 disableElevation
@@ -588,9 +617,9 @@ export default function CustomButtonDesigner() {
                   borderRadius:
                     selectedButtonCorner === "curve" ? "15px" : selectedButtonCorner === "round" ? "40px" : "0px",
                   border: selectedButtonVariant === "outlined" ? `2px solid ${selectedColor}CC` : `0px`,
-                  color: selectedButtonVariant === "outlined" ? selectedColor : "white",
+                  color: selectedButtonVariant === "outlined" ? selectedColor : "white"
                 }}
-                onClick={handleFinish}
+                // onClick={handleFinish}
               >
                 Nice Choice
               </Button>
@@ -602,7 +631,14 @@ export default function CustomButtonDesigner() {
   );
 }
 
+
 export function DecisionFatiguePage() {
+  const [show, setShow] = React.useState(false);
+
+  const showComplex = (start: boolean) => {
+    setShow(start);
+  };
+
   let titleColor = "#740b9c";
   let backgroundColor = "white";
 
@@ -610,16 +646,49 @@ export function DecisionFatiguePage() {
     <Page id="decisions" backgroundColor={backgroundColor}>
       <PageTitle color={titleColor}>Decision Fatigue</PageTitle>
       <PageContent>
-        Decision fatigue occurs when users are overwhelmed by too many choices or the process to make the decision is
-        too complex. This can make users feel mentally tired and frustrated. To help reduce decision fatigue the
-        decisions should be simple and the process straighforward.
+        Decision fatigue can happen when there are too many choices or the process to make the decision is
+        too complex. This can make users feel mentally tired and frustrated.
+        When possible, the decision making process should be simple and easy to understand.
       </PageContent>
       <Box sx={{ backgroundColor: "white" }}>
-        <Typography variant="h3" color={titleColor}>
+        <Typography variant="h4" color={titleColor}>
           Complex
         </Typography>
-        <ColourStepper />
-        <Typography variant="h3" color={titleColor}>
+        {!show ? <>
+          <Box sx={{
+            paddingTop: "30px",
+            paddingBottom: "10px",
+            minHeight: "340px",
+            backgroundColor: "#740b9c09",
+            alignItems: "center",
+            justifyContent: "center",
+            textAlign: "center",
+            marginBottom: "40px"
+          }}>
+            <Typography sx={{ fontSize: "1.4rem", fontWeight: "500", color: "#740b9c", paddingTop: "40px" }}>This is the
+              complex button design process.
+            </Typography>
+            <Typography sx={{ fontSize: "1rem", fontWeight: "400", color: "#740b9c", paddingTop: "10px" }}>You can pick the colour, button style and size.
+            </Typography>
+            <Box>
+              <Button onClick={showComplex} disableElevation variant="contained" sx={{
+                fontWeight: "600",
+                marginTop: "50px",
+                width: "160px",
+                height: "45px",
+                backgroundColor: "#740b9c",
+                borderRadius: "3px",
+                color: "white",
+                "&:hover": {
+                  backgroundColor: "#740b9cCC"
+                }
+              }}>start designing</Button>
+            </Box>
+          </Box>
+        </> : null}
+        {show ? <ColourStepper /> : null}
+
+        <Typography variant="h4" color={titleColor}>
           Simple
         </Typography>
         <CustomButtonDesigner />

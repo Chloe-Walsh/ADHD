@@ -10,8 +10,8 @@ import {
   SvgIcon,
   ToggleButton,
   ToggleButtonGroup,
-  Switch,
-  Styled,
+  Switch
+  // Styled
 } from "@mui/material";
 import { Page } from "@/components/common/Page";
 import { PageTitle } from "@/components/common/PageTitle";
@@ -30,10 +30,11 @@ export function ReadabilityParagraph(props: {
     <Box
       sx={{
         width: props.maxWidth !== null ? props.maxWidth + "%" : "600px",
-        height: "auto",
+        height: "auto"
       }}
     >
-      <Typography fontFamily={props.typeface} sx={{ textTransform: props.casing }} fontSize={props.fontsize}>
+      <Typography variant="body2" fontFamily={props.typeface} sx={{ textTransform: props.casing }}
+                  fontSize={props.fontsize}>
         {props.children}
       </Typography>
     </Box>
@@ -61,8 +62,8 @@ export function ButtonGroup(props: {
   id: string;
 }) {
   return (
-    <Box sx={{ maxwidth: "400px" }}>
-      <FormControl sx={{ minWidth: "150px" }} size="small">
+    <Box sx={{ maxWidth: "400px" }}>
+      <FormControl sx={{ minWidth: "200px" }} size="small">
         <InputLabel id={props.id + "-select-label"}>{props.label}</InputLabel>
         <Select
           variant="outlined"
@@ -71,7 +72,7 @@ export function ButtonGroup(props: {
           value={props.value}
           label={props.label}
           onChange={(event) => props.setValue(event.target.value)}
-          sx={{ border: "green", "& .MuiSelect-outlined": { borderColor: "red" } }}
+
         >
           {props.items.map((item) => (
             <MenuItem key={item.key} value={item.value}>
@@ -84,44 +85,8 @@ export function ButtonGroup(props: {
   );
 }
 
-export function WidthShow(props: { children: any; width: number }) {
-  const spanRef = useRef<HTMLSpanElement>(null);
-  const [textWidth, setTextWidth] = useState(0);
 
-  const getTextWidthInPixels = (ref: HTMLSpanElement) => ref.getBoundingClientRect().width;
-
-  useEffect(() => {
-    setTextWidth(getTextWidthInPixels(spanRef.current!));
-  }, [spanRef]);
-
-  return (
-    <>
-      <Box display="block">
-        <span
-          ref={spanRef}
-          contentEditable
-          suppressContentEditableWarning
-          onInput={() => setTextWidth(getTextWidthInPixels(spanRef.current!))}
-        >
-          {props.children}
-        </span>
-      </Box>
-      <DimensionLineSVG text={textWidth} width={props.width} />
-    </>
-  );
-}
-
-export function DimensionLineSVG(props: { text: number; width: number }) {
-  return (
-    <SvgIcon sx={{ width: props.text }}>
-      <svg viewBox="0 0 568 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M2 16.2295H566M2 30V0M566 30V0" stroke="#0500FF" strokeWidth={props.width} />
-      </svg>
-    </SvgIcon>
-  );
-}
-
-export function HeirarchyTextButton(props: { value: any; setValue: any }) {
+export function HierarchyTextButton(props: { value: any; setValue: any }) {
   const [checked, setChecked] = React.useState(true);
   const handleToggleChange = (event: React.MouseEvent<HTMLElement>, newValue: boolean) => {
     props.setValue(newValue);
@@ -135,53 +100,51 @@ export function HeirarchyTextButton(props: { value: any; setValue: any }) {
         sx={{
           color: "pink",
           "& .MuiSwitch-switchBase.Mui-checked": {
-            color: "blue",
+            color: "blue"
           },
           "& .MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track": {
-            backgroundColor: "lightblue",
-          },
+            backgroundColor: "lightblue"
+          }
         }}
         onChange={handleToggleChange}
       />
-      {/* <ToggleButtonGroup
-        sx={{ paddingTop: "20px", paddingBottom: "20px" }}
-        value={props.value}
-        exclusive
-        onChange={handleToggleChange}
-      >
-        <ToggleButton
-          sx={{
-            width: "100px",
-            backgroundColor: "pink",
-            color: "yellow",
-            "&:hover": { backgroundColor: "orange" },
-            "& MuiButtonBase-root": { backgroundColor: "green", color: "red" },
-          }}
-          value={true}
-        >
-          {props.items[0].key}
-        </ToggleButton>
-        <ToggleButton
-          sx={{ width: "100px", backgroundColor: "purple", color: "grey", "&:hover": { backgroundColor: "peach" } }}
-          value={false}
-        >
-          {props.items[1].key}
-        </ToggleButton>
-      </ToggleButtonGroup> */}
     </Box>
   );
 }
 
-export function HeirarchyTextLine(props: { children: any; isHeading?: boolean; color: string; size: string }) {
+export function WidthShow(props: { children: any }) {
+  return (
+    <>
+      <Box display="block" sx={{ paddingTop: "1px", paddingBottom: "20px" }}>
+        <Box display="inline-block">
+          <Typography sx={{ fontSize: "1.1rem" }}>
+            <span>
+            {props.children}
+            </span>
+          </Typography>
+          <Box component="span" sx={{
+            borderBottom: "4px solid blue",
+            borderLeft: "4px solid blue",
+            borderRight: "4px solid blue",
+            height: "15px",
+            width: "100%",
+            display: "inline-block"
+          }} />
+        </Box>
+      </Box>
+    </>
+  );
+}
+
+export function HierarchyTextLine(props: { children: any; isHeading?: boolean; color: string; size: string }) {
   const isHeadingBig = props.isHeading;
 
   return (
     <Box sx={{ height: "50px", paddingTop: "10px" }}>
       <Typography
         color={props.isHeading ? props.color : "black"}
-        // sx={{ ...(is ? { fontSize: props.size } : { variant: "body1" }) }}
         variant={isHeadingBig ? props.size : "body1"}
-        lineHeight={props.isHeading ? "15px" : 3}
+        lineHeight={props.isHeading ? "1rem" : "3rem"}
       >
         {props.children}
       </Typography>
@@ -193,7 +156,7 @@ export function ReadabilityPage() {
   const [contentWidth, setContentWidth] = useState(85);
   const [typeface, setTypeface] = React.useState("Monospace");
   const [casing, setCasing] = React.useState("Default");
-  const [fontsize, setFontsize] = React.useState("24px");
+  const [fontsize, setFontsize] = React.useState("1.6rem");
 
   const [headingTitle, setHeadingTitle] = React.useState(true);
 
@@ -201,38 +164,55 @@ export function ReadabilityPage() {
 
   return (
     <Page id="readability" backgroundColor="white">
-      <HeirarchyTextLine size="h2" color={titleColor} isHeading={headingTitle}>
-        Readability
-      </HeirarchyTextLine>
+      <Box pb="1rem" pt="1rem">
+        <HierarchyTextLine size="h2" color={titleColor} isHeading={headingTitle}>
+          Readability
+        </HierarchyTextLine>
+      </Box>
       <PageContent>
         There are many things that affect readability and these things affect it and there are some things you can do
-        heirarchy, font, font size, the spacing. Reading and somewhat colour and contrast if you could pick a colour and
+        hierarchy, font, font size, the spacing. Reading and somewhat colour and contrast if you could pick a colour and
         choose everything words.
-        <Box>
-          <HeirarchyTextLine size="h3" color={titleColor} isHeading={headingTitle}>
-            Heirarchy
-          </HeirarchyTextLine>
-          Subtext, if there is no heirarchy then where do you read and what random if there. Reading and somewhat colour
-          and contrast if you could pick a colour and choose everything words.
-          <Box mt={2} mb={1} sx={{ display: "flex", alignItems: "center" }}>
-            <Typography pl={2} sx={{ borderLeft: "5px solid blue", fontWeight: "500" }} lineHeight={2}>
-              See what it is like when there is no heirarchy
+        <Box pt="15px">
+          <HierarchyTextLine size="h3" color={titleColor} isHeading={headingTitle}>
+            Hierarchy
+          </HierarchyTextLine>
+          Hierarchy in web design is how text is organised based on importance. It helps with readability and to
+          understand the content better. It makes it easier to identify important information and navigate the content
+          more efficiently.
+          <Box mt="30px" mb="30px"
+               sx={{ borderLeft: "5px solid blue", display: "flex", alignItems: "center", height: "30px" }}>
+            <Typography pl="30px" sx={{ fontWeight: "500", fontSize: "1.2rem" }} lineHeight={1.2}>
+              {headingTitle ? "Toggle the switch to turn off hierarchy" : "Toggle the switch to turn on hierarchy"}
             </Typography>
-            <HeirarchyTextButton value={headingTitle} setValue={setHeadingTitle} />
+            <HierarchyTextButton value={headingTitle} setValue={setHeadingTitle} />
           </Box>
         </Box>
         <Box>
-          <HeirarchyTextLine size="h3" color={titleColor} isHeading={headingTitle}>
+          <HierarchyTextLine size="h3" color={titleColor} isHeading={headingTitle}>
             Line Length
-          </HeirarchyTextLine>
-          There are a lot of studies with varying results regarding line length from 50 characters to anything below 80
-          to up to 100. Below is an example of how the width may affect your reading comprehension there are faster but
-          not necessarily easier if the lines are longer.
+          </HierarchyTextLine>
+          The line length in text can affect how easy it is to read. It&apos;s
+          important to find the right balance in line length to make reading comfortable and enjoyable. Studies say a
+          line length between 40-80 characters is optimal.
         </Box>
       </PageContent>
-      <WidthShow width={7}>This sentence has a total of 43 characters.</WidthShow>
-      <WidthShow width={5}>The total amount of characters used for this sentence is 60.</WidthShow>
-      <Box display="flex" justifyContent="left" flexGrow={2} flexDirection="row" gap="10px" marginTop={4}>
+      <Box>
+        <WidthShow>This sentence has a total of 43 characters.</WidthShow>
+        <WidthShow>Whereas this sentence is longer and the line length is a total of 80 characters.</WidthShow>
+        <Typography sx={{
+          paddingTop: "2px",
+          paddingBottom: "2px",
+          paddingLeft: "30px",
+          fontSize: "1.2rem",
+          fontWeight: "500",
+          marginTop: "40px",
+          marginBottom: "40px",
+          borderLeft: "5px solid blue"
+        }}>Have a go at changing the line length of the paragraph below.</Typography>
+      </Box>
+      <Box display="flex" justifyContent="left" flexGrow={1} flexWrap="wrap" flexDirection="row" gap="20px"
+           paddingTop="15px">
         <ButtonGroup
           value={typeface}
           setValue={setTypeface}
@@ -241,7 +221,7 @@ export function ReadabilityPage() {
           items={[
             { key: "Serif", value: "Serif" },
             { key: "Sans Serif", value: "Sans-serif" },
-            { key: "Monospace", value: "Monospace" },
+            { key: "Monospace", value: "Monospace" }
           ]}
         />
         <ButtonGroup
@@ -250,9 +230,8 @@ export function ReadabilityPage() {
           label="Case"
           id="case"
           items={[
-            { key: "Lowercase", value: "Lowercase" },
-            { key: "Uppercase", value: "Uppercase" },
-            { key: "Default", value: "Default" },
+            { key: "Lowercase", value: "Default" },
+            { key: "Uppercase", value: "Uppercase" }
           ]}
         />
         <ButtonGroup
@@ -261,9 +240,9 @@ export function ReadabilityPage() {
           label="Font Size"
           id="fontsize"
           items={[
-            { key: "Small", value: "12px" },
-            { key: "Medium", value: "16px" },
-            { key: "Large", value: "24px" },
+            { key: "Small", value: "0.8rem" },
+            { key: "Medium", value: "1.1rem" },
+            { key: "Large", value: "1.6rem" }
           ]}
         />
       </Box>
